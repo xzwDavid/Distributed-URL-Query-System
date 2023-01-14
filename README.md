@@ -1,4 +1,4 @@
-# Distributed-URL-Query-System
-pls feel free to clone my repo;
-it includes 4 parts;
+# Distributed-URL-Query-System;\n
+pls feel free to clone my repo;\n
+it includes 4 parts;\n
 the tech includeing etcd,cassandra,spring,consul,kafka;
