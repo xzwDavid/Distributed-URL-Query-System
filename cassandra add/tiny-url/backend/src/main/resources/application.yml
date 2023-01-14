@@ -1,0 +1,31 @@
+info:
+  app:
+    uuid: ${instanceId}
+
+spring:
+  mvc:
+    servlet:
+      load-on-startup: 1
+  application:
+    name: tiny-url-backend
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        heartbeat:
+          enabled: true
+        healthCheckPath: /health-check
+        healthCheckInterval: 20s
+        enabled: true
+        instanceId: ${spring.application.name}:${info.app.uuid}
+        ip-address: localhost
+    etcd:
+      endpoints: "http://localhost:21379,http://localhost:22379,http://localhost:23379"
+  cassandra:
+    contact-points: localhost:9042,localhost:9043,localhost:9044
+    datacenter: datacenter1
+    keyspace: dev
+
+server:
+  port: 0

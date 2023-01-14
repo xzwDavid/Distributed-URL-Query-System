@@ -1,0 +1,3 @@
+edu/lantonia/tinyurl/backend/resource/HealthCheckResource.class
+edu/lantonia/tinyurl/backend/service/Notifier.class
+edu/lantonia/tinyurl/backend/resource/UrlShortenResource.class

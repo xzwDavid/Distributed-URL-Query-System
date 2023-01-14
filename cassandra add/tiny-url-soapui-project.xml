@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="01db9880-95c9-4531-9099-a9d546c1bbb8" activeEnvironment="Default" name="Tiny-URL"
+                    resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL"
+                    xmlns:con="http://eviware.com/soapui/config"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://eviware.com/soapui/config ">
+    <con:settings/>
+    <con:interface xsi:type="con:RestService" id="d780b0eb-4262-43e3-b224-67c0995e5e2b"
+                   wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart=""/>
+        <con:endpoints>
+            <con:endpoint>http://localhost:8080</con:endpoint>
+        </con:endpoints>
+        <con:resource name="Short-url" path="/short-url" id="f883f416-2c53-44a6-997d-10a59df6c266">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Short-url 1" id="1a0ee18f-95ee-4bab-b216-4cb71450a2fe" method="POST">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>text/plain;charset=UTF-8</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                    <con:element>data</con:element>
+                </con:representation>
+                <con:representation type="REQUEST">
+                    <con:mediaType>text/xml</con:mediaType>
+                    <con:params/>
+                </con:representation>
+                <con:request name="Request 1" id="d76cf8e4-cacd-454a-9e3f-f42f6fb328f4" mediaType="application/json"
+                             postQueryString="false">
+                    <con:settings>
+                        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/>
+                        </con:setting>
+                    </con:settings>
+                    <con:endpoint>http://localhost:8080</con:endpoint>
+                    <con:request/>
+                    <con:credentials>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:jmsPropertyConfig/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+        <con:resource name="" path="" id="65fe5be1-6a8d-4b38-8f41-fecbebce8d0d">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="Method 1" id="ea8a2dbe-8fb0-4dea-9f2d-ae4bff0c9437" method="GET">
+                <con:settings/>
+                <con:parameters/>
+                <con:request name="Request 1" id="011fc535-a746-470b-910c-de6a5a0e09ac" mediaType="application/json">
+                    <con:settings/>
+                    <con:endpoint>http://localhost:8080</con:endpoint>
+                    <con:request/>
+                    <con:credentials>
+                        <con:authType>No Authorization</con:authType>
+                    </con:credentials>
+                    <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                    <con:jmsPropertyConfig/>
+                    <con:parameters/>
+                </con:request>
+            </con:method>
+        </con:resource>
+    </con:interface>
+    <con:testSuite id="486be4ca-9444-4452-87c3-6ea85bb3400b" name="Shorten URL Tests">
+        <con:settings/>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="a17b9279-a858-45a9-be8c-d53f109224eb" failOnError="true" failTestCaseOnErrors="true"
+                      keepSession="false" maxResults="0" name="Shorten URL" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="restrequest" name="Shorten URL" id="29c4c1ae-e242-4d25-af69-f54034974c34">
+                <con:settings/>
+                <con:config service="http://localhost:8080" methodName="Short-url 1" resourcePath="/short-url"
+                            xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:restRequest name="Shorten URL" id="0ac74fc1-5a1e-4bfb-81de-8dd1394f2ed0" mediaType="text/xml"
+                                     postQueryString="false">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080</con:endpoint>
+                        <con:request>https://www.war.com/${=java.util.UUID.randomUUID()}</con:request>
+                        <con:originalUri>http://localhost/short-url</con:originalUri>
+                        <con:assertion type="Valid HTTP Status Codes" id="309483e9-bbca-43b2-bd22-6a1dd7108450"
+                                       name="Valid HTTP Status Codes">
+                            <con:configuration>
+                                <codes>200</codes>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:parameters/>
+                    </con:restRequest>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="transfer" name="Short URL Transformer" id="d1d8607d-c4de-463d-9d5b-8312d776f3c5">
+                <con:settings/>
+                <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true"
+                                   ignoreEmpty="false" transferToAll="false" entitize="false"
+                                   transferChildNodes="false">
+                        <con:name>Short URL</con:name>
+                        <con:sourceType>Response</con:sourceType>
+                        <con:sourceStep>Shorten URL</con:sourceStep>
+                        <con:sourcePath/>
+                        <con:targetType>Endpoint</con:targetType>
+                        <con:targetStep>Access Short URL</con:targetStep>
+                        <con:type>XPATH</con:type>
+                        <con:upgraded>true</con:upgraded>
+                    </con:transfers>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="restrequest" name="Access Short URL" id="f93c5fd4-b013-4992-9692-aef738867e08">
+                <con:settings/>
+                <con:config service="http://localhost:8080" methodName="Method 1" resourcePath=""
+                            xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:restRequest name="Access Short URL" id="33bb3cfe-aa69-497a-b97c-47c3ecd5c881"
+                                     mediaType="application/json">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@follow-redirects">
+                                false
+                            </con:setting>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://localhost:8080/url/17</con:endpoint>
+                        <con:request/>
+                        <con:originalUri>https://www.google.com/b7e88450-ca4f-4a14-acda-22799a48e02c</con:originalUri>
+                        <con:assertion type="Valid HTTP Status Codes" id="68996513-a87c-4f46-a896-681814d4001f"
+                                       name="Valid HTTP Status Codes">
+                            <con:configuration>
+                                <codes>302</codes>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:parameters/>
+                    </con:restRequest>
+                </con:config>
+            </con:testStep>
+            <con:loadTest id="56f0992c-792e-4a3f-992a-bc3a79a7670e" name="5 TPS">
+                <con:settings>
+                    <con:setting id="HttpSettings@close-connections">false</con:setting>
+                </con:settings>
+                <con:threadCount>5</con:threadCount>
+                <con:startDelay>0</con:startDelay>
+                <con:sampleInterval>250</con:sampleInterval>
+                <con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed>
+                <con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange>
+                <con:historyLimit>-1</con:historyLimit>
+                <con:testLimit>300</con:testLimit>
+                <con:limitType>TIME</con:limitType>
+                <con:loadStrategy>
+                    <con:type>Simple</con:type>
+                </con:loadStrategy>
+                <con:assertion type="Step Status" name="Step Status"/>
+                <con:maxAssertionErrors>100</con:maxAssertionErrors>
+                <con:cancelExcessiveThreads>true</con:cancelExcessiveThreads>
+                <con:strategyInterval>500</con:strategyInterval>
+            </con:loadTest>
+            <con:properties/>
+        </con:testCase>
+        <con:properties/>
+    </con:testSuite>
+    <con:properties/>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+    <con:sensitiveInformation/>
+</con:soapui-project>

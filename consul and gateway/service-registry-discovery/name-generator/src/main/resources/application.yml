@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: srd-name-generator
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        healthCheckPath: /health-check
+        healthCheckInterval: 20s
+        enabled: true
+        instanceId: ${spring.application.name}:${random.value}
+
+server:
+  port: 0
